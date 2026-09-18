@@ -1,0 +1,6 @@
+@import '@ft/ui/tokens.css';
+
+/* Tailwind v4 auto-detects sources in this app, but @ft/ui is reached through
+   a workspace symlink in node_modules, which detection skips. Declaring it
+   explicitly keeps the shared primitives' classes in the build. */
+@source '../../../packages/ui/src';

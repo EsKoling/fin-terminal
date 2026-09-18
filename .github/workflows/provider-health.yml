@@ -1,0 +1,35 @@
+name: Provider health
+
+# Free data sources break without notice. This probes them daily and commits the
+# result, which scripts/hooks/inject-context.mjs then injects into every Claude
+# Code session so the agent never designs around a source that is already down.
+on:
+  schedule:
+    - cron: '17 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      # A failing provider must not fail the job: the report IS the output.
+      - run: node scripts/probes/run-all.mjs || true
+        env:
+          FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+          TWELVEDATA_API_KEY: ${{ secrets.TWELVEDATA_API_KEY }}
+          FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
+          SEC_USER_AGENT: ${{ secrets.SEC_USER_AGENT }}
+      - name: Commit status if changed
+        run: |
+          git config user.name  "provider-health"
+          git config user.email "actions@users.noreply.github.com"
+          git add docs/PROVIDER_STATUS.md
+          git diff --staged --quiet || git commit -m "chore: refresh provider status"
+          git push

@@ -1,0 +1,14 @@
+{
+  "extends": "../../../tsconfig.base.json",
+  "compilerOptions": {
+    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "jsx": "preserve",
+    // React 19 removed the global JSX namespace; it now lives in
+    // react/jsx-runtime and is only reachable via jsxImportSource.
+    "jsxImportSource": "react",
+    "allowJs": true,
+    "types": ["node"],
+    "plugins": [{ "name": "next" }],
+    "incremental": true
+  }
+}

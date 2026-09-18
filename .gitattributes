@@ -1,0 +1,5 @@
+# Normalize to LF in the repo; CI runs on Linux and hooks are shell-agnostic Node.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

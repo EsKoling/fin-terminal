@@ -1,0 +1,32 @@
+{
+  "name": "fin-terminal",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "packageManager": "npm@11.16.0",
+  "engines": {
+    "node": ">=20.11"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "typecheck": "turbo run typecheck",
+    "lint": "turbo run lint",
+    "test": "turbo run test",
+    "verify": "turbo run typecheck lint test",
+    "verify:changed": "turbo run typecheck lint test --filter=...[HEAD]",
+    "probe": "node scripts/probes/run-all.mjs",
+    "format": "prettier --write \"**/*.{ts,tsx,mjs,json,md,css}\""
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "prettier": "^3.4.2",
+    "prettier-plugin-tailwindcss": "^0.6.9",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  }
+}

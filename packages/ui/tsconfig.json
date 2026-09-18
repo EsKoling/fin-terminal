@@ -1,0 +1,4 @@
+{
+  "extends": "@ft/config/tsconfig/next.json",
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
+}

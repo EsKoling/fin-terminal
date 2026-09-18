@@ -1,0 +1,156 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens for the terminal.
+ *
+ * Direction: modern dark chrome, terminal soul. Bloomberg's information
+ * density and keyboard-first posture, rendered in a contemporary palette
+ * rather than an amber-on-black costume.
+ *
+ * Three rules this file exists to enforce:
+ *   1. Amber is reserved for DATA emphasis. Never chrome, never a button.
+ *      The moment amber decorates furniture it stops signalling anything.
+ *   2. Every numeral renders in a tabular font feature, so columns of prices
+ *      align and a changing last-digit does not reflow the row.
+ *   3. Nothing below 11px. Density is achieved with spacing and weight, not
+ *      by shrinking text past legibility.
+ *
+ * The terminal is dark-only by design. A trading surface viewed for hours in
+ * a dim room has no light-mode use case, and supporting one would double the
+ * contrast-checking surface for no user.
+ */
+
+@theme {
+  /* Surfaces, darkest to lightest. Panels stack: base < panel < raised. */
+  --color-base: #08090b;
+  --color-panel: #0e1014;
+  --color-raised: #15181e;
+  --color-overlay: #1c2028;
+  --color-hover: #222731;
+
+  /* Borders. Hairlines at this density read better than shadows. */
+  --color-line: #1e222a;
+  --color-line-strong: #2b313c;
+
+  /* Text ramp. */
+  --color-fg: #e6e9ef;
+  --color-fg-muted: #9aa3b2;
+  --color-fg-subtle: #6b7280;
+  --color-fg-faint: #4b5563;
+
+  /* Amber: DATA ONLY. Live values, focused symbol, active link group A. */
+  --color-amber: #f5a524;
+  --color-amber-dim: #a8741c;
+  --color-amber-wash: #2a1f0d;
+
+  /* Link-group channels. Bloomberg's coloured symbol linking. */
+  --color-link-a: #f5a524;
+  --color-link-b: #22d3ee;
+  --color-link-c: #a78bfa;
+
+  /* Market direction. Chosen to stay distinguishable under deuteranopia:
+     the green is teal-shifted and the red is orange-shifted, so hue is not
+     the only channel carrying the signal. Direction is also always
+     reinforced by an arrow glyph and a sign. */
+  --color-up: #26a69a;
+  --color-up-wash: #0d2b28;
+  --color-down: #ef5350;
+  --color-down-wash: #2e1514;
+  --color-flat: #6b7280;
+
+  /* Provenance chip states. These encode data honesty, so they are semantic
+     tokens rather than ad-hoc colours at the call site. */
+  --color-prov-realtime: #26a69a;
+  --color-prov-delayed: #f5a524;
+  --color-prov-stale: #6b7280;
+  --color-prov-degraded: #ef8c34;
+  --color-prov-error: #ef5350;
+
+  /* Type. Inter for chrome, JetBrains Mono for anything a trader reads as a
+     figure rather than as prose. */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --text-2xs: 0.6875rem; /* 11px — the floor */
+  --text-xs: 0.75rem;
+  --text-sm: 0.8125rem;
+  --text-base: 0.875rem;
+  --text-lg: 1rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.75rem;
+
+  /* 4px spacing scale. Panel chrome uses 1-2, content uses 2-4. */
+  --spacing: 0.25rem;
+
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+}
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html,
+  body {
+    height: 100%;
+    background: var(--color-base);
+    color: var(--color-fg);
+    font-family: var(--font-sans);
+    font-size: var(--text-sm);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Density: a terminal should not bounce. */
+  body {
+    overflow: hidden;
+    overscroll-behavior: none;
+  }
+
+  ::selection {
+    background: var(--color-amber-wash);
+    color: var(--color-amber);
+  }
+
+  /* Thin scrollbars; full-width ones eat real estate in a 12-panel grid. */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-line-strong) transparent;
+  }
+  *::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  *::-webkit-scrollbar-thumb {
+    background: var(--color-line-strong);
+    border-radius: 4px;
+  }
+  *::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  /* Keyboard-first means focus must always be visible and never ugly. */
+  :focus-visible {
+    outline: 1px solid var(--color-amber);
+    outline-offset: 1px;
+  }
+}
+
+@layer utilities {
+  /* Every figure in the app carries this. Tabular so columns align, and
+     slashed-zero so 0 and O are never confused in a ticker. */
+  .tabular {
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums slashed-zero;
+    font-feature-settings:
+      'tnum' 1,
+      'zero' 1;
+  }
+
+  .no-drag {
+    -webkit-user-select: none;
+    user-select: none;
+  }
+}
