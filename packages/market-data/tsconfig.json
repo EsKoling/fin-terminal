@@ -1,0 +1,1 @@
+{ "extends": "@ft/config/tsconfig/lib.json", "include": ["src/**/*.ts"] }

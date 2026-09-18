@@ -54,9 +54,14 @@ export const finnhubCodec: SymbolCodec = {
 };
 
 /**
- * Twelve Data. 800 credits/day and 8/min on the free tier, and the only keyed
- * source verified to cover XIDX, which makes it the primary for Indonesian
- * equities with Yahoo as the unreliable backup.
+ * Twelve Data. 800 credits/day and 8/min on the free tier.
+ *
+ * It lists all 943 IDX symbols in reference data, so this codec can express
+ * `BBCA:XIDX` — but a free-tier *quote* for one returns "available starting
+ * with the Pro or Venture plan". The symbol is expressible and the entitlement
+ * is missing, which is a capability limit rather than a codec one: see the
+ * `venues` field on `Capability` in @ft/market-data. Yahoo is the only free
+ * IDX price source.
  */
 export const twelveDataCodec: SymbolCodec = {
   id: 'twelvedata',
