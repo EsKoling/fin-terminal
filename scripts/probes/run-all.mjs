@@ -12,6 +12,18 @@
  * Code session.
  */
 
+// Node does not read .env files on its own, so `npm run probe` would report
+// UNKNOWN for every keyed provider even with the keys sitting on disk. Load
+// .env.local when it is there; in CI it is not, and the keys arrive as Actions
+// secrets instead, which the empty catch quietly allows.
+if (typeof process.loadEnvFile === 'function') {
+  try {
+    process.loadEnvFile(new URL('../../.env.local', import.meta.url));
+  } catch {
+    // No .env.local. Fall through to whatever is already in process.env.
+  }
+}
+
 const UA = process.env.SEC_USER_AGENT ?? 'fin-terminal/0.1 (contact@example.com)';
 const TIMEOUT_MS = 10_000;
 
@@ -69,12 +81,17 @@ const PROBES = [
     check: (j) => (typeof j?.c === 'number' && j.c > 0 ? 'AAPL ' + j.c : 'missing or zero c'),
   },
   {
+    // Deliberately a US symbol. The free tier lists all 943 IDX symbols in
+    // reference data but refuses IDX quotes ("available starting with the Pro
+    // or Venture plan"), so probing XIDX would report a sales message forever -
+    // and worse, as OK, since it is not a 'missing field' shape failure. Twelve
+    // Data is routed for US and reference data only, so probe what we use.
     id: 'twelvedata',
     needs: 'TWELVEDATA_API_KEY',
     url:
-      'https://api.twelvedata.com/quote?symbol=BBCA&exchange=XIDX&apikey=' +
+      'https://api.twelvedata.com/quote?symbol=AAPL&apikey=' +
       (process.env.TWELVEDATA_API_KEY ?? ''),
-    check: (j) => (j?.close ? 'BBCA ' + j.close : (j?.message ?? 'missing close field')),
+    check: (j) => (j?.close ? 'AAPL ' + j.close : (j?.message ?? 'missing close field')),
   },
   {
     id: 'fred',

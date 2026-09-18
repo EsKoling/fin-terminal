@@ -69,22 +69,27 @@ which reports `fidelity`.
 
 Never design past these. Target 70% utilisation to leave headroom for the alerts worker.
 
-| Provider          | Hard limit                          | App ceiling                           |
-| ----------------- | ----------------------------------- | ------------------------------------- |
-| Finnhub           | 60/min                              | 40/min                                |
-| Twelve Data       | 800/day, 8/min                      | 550/day, 5/min                        |
-| FRED              | 120/min                             | 60/min                                |
-| Yahoo             | undocumented                        | 30/min, back off hard on any 401/429  |
-| Alpha Vantage     | **25/day**                          | 15/day, manual refresh only           |
-| SEC EDGAR         | ~10/s                               | 4/s, declared `User-Agent` required   |
-| Binance WS        | 1024 streams/conn                   | 300 conn attempts / 5 min / IP        |
-| Indodax           | undocumented                        | reachable from ID, quotes IDR (proxy) |
-| Cerebras          | 1M tok/day, 8192 ctx                | bulk work                             |
-| Groq              | 30 RPM, ~100K tok/day               | interactive                           |
-| Gemini Flash-Lite | 15 RPM / 500 RPD                    | structured extraction only            |
-| Gemini Flash      | **20 RPD**                          | effectively unusable                  |
-| Upstash Redis     | 500K cmd/**month**                  | write-coalesce the budget ledger      |
-| Vercel Hobby      | 300s functions, **daily-only cron** | QStash drives the alerts worker       |
+| Provider          | Hard limit                          | App ceiling                                              |
+| ----------------- | ----------------------------------- | -------------------------------------------------------- |
+| Finnhub           | 60/min                              | 40/min                                                   |
+| Twelve Data       | 800/day, 8/min                      | 550/day, 5/min - **reference data only, NOT IDX quotes** |
+| FRED              | 120/min                             | 60/min                                                   |
+| Yahoo             | undocumented                        | 30/min, back off hard on any 401/429                     |
+| Alpha Vantage     | **25/day**                          | 15/day, manual refresh only                              |
+| SEC EDGAR         | ~10/s                               | 4/s, declared `User-Agent` required                      |
+| Binance WS        | 1024 streams/conn                   | 300 conn attempts / 5 min / IP                           |
+| Indodax           | undocumented                        | reachable from ID, quotes IDR (proxy)                    |
+| Cerebras          | 1M tok/day, 8192 ctx                | bulk work                                                |
+| Groq              | 30 RPM, ~100K tok/day               | interactive                                              |
+| Gemini Flash-Lite | 15 RPM / 500 RPD                    | structured extraction only                               |
+| Gemini Flash      | **20 RPD**                          | effectively unusable                                     |
+| Upstash Redis     | 500K cmd/**month**                  | write-coalesce the budget ledger                         |
+| Vercel Hobby      | 300s functions, **daily-only cron** | QStash drives the alerts worker                          |
+
+**IDX prices have exactly one free source: Yahoo.** Twelve Data lists all 943 IDX symbols in its
+reference data but a quote returns _"available starting with the Pro or Venture plan"_. Never
+route an IDX quote to Twelve Data. This also makes the L2 durable bar cache load-bearing rather
+than an optimisation: it is the only thing keeping IDX charts alive when Yahoo breaks.
 
 ## Crypto venue reachability
 
