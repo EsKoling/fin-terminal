@@ -11,7 +11,7 @@ Gate for every phase: `npm run verify` green.
 - [x] Next.js 15 shell, builds clean
 - [x] Claude Code agents, hooks, commands
 - [x] Live provider probes; reachability findings in `docs/DATA-SOURCES.md`
-- [ ] Deployed to Vercel on a public URL **(needs your Vercel account)**
+- [x] Deployed to Vercel on a public URL — <https://fin-terminal-ifcx.vercel.app>
 - [x] Public GitHub repo + CI green
 
 ## Phase 1 — The hero workspace
