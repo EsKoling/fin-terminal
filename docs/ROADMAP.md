@@ -10,8 +10,9 @@ Gate for every phase: `npm run verify` green.
 - [x] `@ft/ui` — design tokens, `ProvenanceChip`, numeric primitives
 - [x] Next.js 15 shell, builds clean
 - [x] Claude Code agents, hooks, commands
-- [ ] Deployed to Vercel on a public URL
-- [ ] Public GitHub repo + CI green
+- [x] Live provider probes; reachability findings in `docs/DATA-SOURCES.md`
+- [ ] Deployed to Vercel on a public URL **(needs your Vercel account)**
+- [ ] Public GitHub repo + CI green **(needs `gh` installed, or create it in the browser)**
 
 ## Phase 1 — The hero workspace
 

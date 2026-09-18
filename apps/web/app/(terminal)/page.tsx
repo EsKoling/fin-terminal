@@ -79,9 +79,9 @@ export default function TerminalPage() {
           <h2 className="text-fg-muted text-2xs mb-2 tracking-widest uppercase">Venue status</h2>
           <ul className="space-y-1">
             {['XNAS', 'XIDX', 'BINANCE', 'OTC', 'XCEC'].map((mic) => (
-              <li key={mic} className="flex items-center justify-between text-sm">
+              <li key={mic} className="flex items-baseline justify-between text-sm leading-5">
                 <span className="text-fg-muted">{mic}</span>
-                <span className="tabular text-2xs uppercase">{venueState(mic)}</span>
+                <span className="tabular text-2xs uppercase leading-5">{venueState(mic)}</span>
               </li>
             ))}
           </ul>
