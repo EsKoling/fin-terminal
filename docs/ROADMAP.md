@@ -12,7 +12,7 @@ Gate for every phase: `npm run verify` green.
 - [x] Claude Code agents, hooks, commands
 - [x] Live provider probes; reachability findings in `docs/DATA-SOURCES.md`
 - [ ] Deployed to Vercel on a public URL **(needs your Vercel account)**
-- [ ] Public GitHub repo + CI green **(needs `gh` installed, or create it in the browser)**
+- [x] Public GitHub repo + CI green
 
 ## Phase 1 — The hero workspace
 
