@@ -6,16 +6,16 @@ A digest of this table is injected into every Claude Code session by
 
 States: `OK` · `DEGRADED` (slow, throttled or shape-changed) · `TRIPPED` (unreachable) · `UNKNOWN` (no key)
 
-| provider     | state   | detail                        |
-| ------------ | ------- | ----------------------------- |
-| `binance`    | OK      | BTCUSDT 77526.00000000, 411ms |
-| `coinbase`   | TRIPPED | timeout                       |
-| `kraken`     | TRIPPED | timeout                       |
-| `indodax`    | OK      | BTC/IDR 1365149000, 195ms     |
-| `yahoo`      | OK      | BBCA.JK 6225 IDR, 143ms       |
-| `sec`        | OK      | Apple Inc., 326ms             |
-| `finnhub`    | UNKNOWN | needs FINNHUB_API_KEY         |
-| `twelvedata` | UNKNOWN | needs TWELVEDATA_API_KEY      |
-| `fred`       | UNKNOWN | needs FRED_API_KEY            |
+| provider     | state   | detail                             |
+| ------------ | ------- | ---------------------------------- |
+| `binance`    | OK      | BTCUSDT 78249.66000000, 453ms      |
+| `coinbase`   | TRIPPED | timeout                            |
+| `kraken`     | TRIPPED | timeout                            |
+| `indodax`    | OK      | BTC/IDR 1379900000, 68ms           |
+| `yahoo`      | OK      | BBCA.JK 6225 IDR, 152ms            |
+| `sec`        | OK      | Apple Inc., 175ms                  |
+| `finnhub`    | OK      | AAPL 337, 610ms                    |
+| `twelvedata` | OK      | AAPL 337, 464ms                    |
+| `fred`       | OK      | CPIAUCSL 2026-08-01 334.131, 816ms |
 
-_Generated: 2026-09-18T06:44:34.436Z_
+_Generated: 2026-09-18T08:59:57.146Z_
