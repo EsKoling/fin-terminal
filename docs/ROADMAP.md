@@ -16,7 +16,7 @@ Gate for every phase: `npm run verify` green.
 
 ## Phase 1 — The hero workspace
 
-- [ ] `@ft/market-data`: registry, capability matrix, router scoring, circuit breaker
+- [x] `@ft/market-data`: registry, capability matrix, router scoring, circuit breaker
 - [ ] Budget ledger with write-coalescing, L0 LRU / L1 Redis / L2 Neon cache tiers
 - [ ] Crypto WS ladder: Binance to Coinbase to Kraken, 2.5s probe timeout
 - [ ] Yahoo adapter: server-only, single-flight coalescer, Redis crumb jar
