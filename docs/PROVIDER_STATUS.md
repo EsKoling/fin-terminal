@@ -8,14 +8,14 @@ States: `OK` · `DEGRADED` (slow, throttled or shape-changed) · `TRIPPED` (unre
 
 | provider | state | detail |
 |---|---|---|
-| `binance` | OK | BTCUSDT 83345.84000000, 501ms |
-| `coinbase` | OK | BTC-USD 83311.7, 89ms |
-| `kraken` | OK | XBTUSD 83319.90000, 102ms |
-| `indodax` | OK | BTC/IDR 1495000000, 897ms |
-| `yahoo` | OK | BBCA.JK 6050 IDR, 175ms |
-| `sec` | OK | Apple Inc., 106ms |
-| `finnhub` | OK | AAPL 333.67, 265ms |
-| `twelvedata` | OK | AAPL 333.63000, 482ms |
-| `fred` | OK | CPIAUCSL 2026-08-01 334.131, 1613ms |
+| `binance` | OK | BTCUSDT 82244.24000000, 689ms |
+| `coinbase` | OK | BTC-USD 82180.06, 166ms |
+| `kraken` | OK | XBTUSD 82192.50000, 247ms |
+| `indodax` | OK | BTC/IDR 1478051000, 741ms |
+| `yahoo` | OK | BBCA.JK 6000 IDR, 260ms |
+| `sec` | OK | Apple Inc., 201ms |
+| `finnhub` | OK | AAPL 336.3, 287ms |
+| `twelvedata` | OK | AAPL 336.25, 412ms |
+| `fred` | OK | CPIAUCSL 2026-08-01 334.131, 618ms |
 
-_Generated: 2026-10-07T13:29:31.678Z_
+_Generated: 2026-10-08T13:35:21.466Z_
